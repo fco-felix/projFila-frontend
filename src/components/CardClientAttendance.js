@@ -59,7 +59,7 @@ export default function CardClientAttendance({ queued, isLogged }) {
                 <span>{formatter.formatCPF(queue.cpf)}</span>
               </div>
               <div>
-                <button
+                <a
                   className="btn-floating btn-small green lighten-2"
                   href={`https://wa.me/55${
                     queue.numberWhatsApp
@@ -69,7 +69,7 @@ export default function CardClientAttendance({ queued, isLogged }) {
                   disabled={!isLogged}
                 >
                   <i className="material-icons">message</i>
-                </button>
+                </a>
                 <button
                   className="btn-floating btn-small green"
                   onClick={() => {
