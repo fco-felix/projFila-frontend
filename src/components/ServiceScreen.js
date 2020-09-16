@@ -70,8 +70,8 @@ export default function ServiceScreen() {
 
   return (
     <div className="row center">
-      {filteredQueue.length <= 0 && <Spinner />}
-      {filteredQueue.length > 0 && (
+      {inQueue.length <= 0 && <Spinner />}
+      {inQueue.length > 0 && (
         <div>
           <Record isVisible={true} />
           <Queue

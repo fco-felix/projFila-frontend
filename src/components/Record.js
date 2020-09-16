@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import RecordData from './RecordData';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 export default function Record() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [icon, setIcon] = useState('assessment');
-  const [colorButton, setColorButton] = useState('blue');
 
-  const handleClickReportButton = () => {
-    if (!modalIsOpen) {
-      setIcon('close');
-      setColorButton('red');
-      setModalIsOpen(true);
-    } else {
-      setIcon('assessment');
-      setColorButton('blue');
-      setModalIsOpen(false);
-    }
+  const handleClose = () => {
+    setModalIsOpen(false);
+  };
+
+  const handleOpen = () => {
+    setModalIsOpen(true);
   };
 
   return (
@@ -29,14 +26,32 @@ export default function Record() {
         }}
       >
         <a
-          className={`btn-floating waves-effect waves-light ${colorButton}`}
-          onClick={handleClickReportButton}
+          className={`btn-floating btn waves-effect waves-light blue`}
+          onClick={handleOpen}
           disabled={true}
         >
-          <i className="material-icons">{icon}</i>
+          <i className="material-icons">assessment</i>
         </a>
       </div>
-      <div>{modalIsOpen && <RecordData />}</div>
+      <div>
+        <Modal
+          isOpen={modalIsOpen}
+          centered
+          style={{
+            overlay: {
+              backgroundColor: 'rgba(0,0,0,0.6)',
+              zIndex: 1000,
+            },
+            content: {
+              width: '80%',
+              height: '85%',
+              margin: 'auto',
+            },
+          }}
+        >
+          <RecordData onClose={handleClose} />
+        </Modal>
+      </div>
     </div>
   );
 }
