@@ -5,7 +5,7 @@ import { updateQueue } from '../api/apiService';
 
 export default function CardClientAttendance({ queued, isLogged }) {
   return (
-    <div>
+    <div style={{ maxHeight: '650px', overflow: 'auto' }}>
       <FlipMove
         style={{
           display: 'flex',

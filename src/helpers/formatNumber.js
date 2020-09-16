@@ -1,4 +1,5 @@
 //const numberFormat = Intl.NumberFormat('pt-BR');
+import moment from 'moment';
 
 function formatWhatsAppNumber(number) {
   return (
@@ -31,4 +32,14 @@ function formatCPF(text) {
   return cpf.replace(mask, '$1.$2.$3-$4');
 }
 
-export { formatWhatsAppNumber, formatCPF, formatMessageForWhatsApp };
+function formatData(data) {
+  const newDate = moment(data);
+  return newDate.toDate().toLocaleDateString();
+}
+
+export {
+  formatWhatsAppNumber,
+  formatCPF,
+  formatMessageForWhatsApp,
+  formatData,
+};

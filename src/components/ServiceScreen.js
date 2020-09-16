@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
 import Queue from './Queue';
 import Attendance from './Attendance';
 import * as api from '../api/apiService';
+import Spinner from './Spinner';
+import Record from './Record';
 
 export default function ServiceScreen() {
   const [filter, setFilter] = useState('');
@@ -68,22 +69,26 @@ export default function ServiceScreen() {
   };
 
   return (
-    <div>
-      <div className="row center">
-        <Queue
-          filteredQueue={filteredQueue}
-          nextQueuePosition={nextQueuePosition}
-          filter={filter}
-          onFilter={handleFilter}
-          onSave={handleSave}
-        />
-        <Attendance
-          isCallClientDisabled={isCallClientDisabled}
-          attendanceQueue={attendanceQueue}
-          onCallClient={handleCallClient}
-          onAttendant={handleAttendant}
-        />
-      </div>
+    <div className="row center">
+      {filteredQueue.length <= 0 && <Spinner />}
+      {filteredQueue.length > 0 && (
+        <div>
+          <Record isVisible={true} />
+          <Queue
+            filteredQueue={filteredQueue}
+            nextQueuePosition={nextQueuePosition}
+            filter={filter}
+            onFilter={handleFilter}
+            onSave={handleSave}
+          />
+          <Attendance
+            isCallClientDisabled={isCallClientDisabled}
+            attendanceQueue={attendanceQueue}
+            onCallClient={handleCallClient}
+            onAttendant={handleAttendant}
+          />
+        </div>
+      )}
     </div>
   );
 }

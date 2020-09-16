@@ -21,7 +21,7 @@ const Dropdown = ({ options, label, ...props }) => {
   }
 
   return (
-    <React.Fragment>
+    <div>
       <span htmlFor={props.id}>{label}</span>
       <Select
         className="input-field"
@@ -34,7 +34,7 @@ const Dropdown = ({ options, label, ...props }) => {
       {meta.touched && meta.error ? (
         <span className="custom-input-error">{meta.error.value}</span>
       ) : null}
-    </React.Fragment>
+    </div>
   );
 };
 

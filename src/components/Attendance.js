@@ -29,7 +29,6 @@ export default function Attendance({
   };
 
   return (
-    <div>
       <div className="center col s12 m6" style={{ marginTop: '10px' }}>
         <div className="row">
           <div className="col s12">
@@ -101,6 +100,5 @@ export default function Attendance({
           />
         )}
       </div>
-    </div>
   );
 }

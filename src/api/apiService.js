@@ -75,8 +75,14 @@ const SERVICES_TYPE = [
   },
 ];
 
-async function getAllQueuedSorted() {
+async function getAllData() {
   const res = await axios.get(API_URl);
+  const queue = res.data.queue.sort((a, b) => a.timestamp - b.timestamp);
+  return queue;
+}
+
+async function getAllQueuedSorted() {
+  const res = await axios.get(`${API_URl}/last5days`);
   const queue = res.data.queue.sort(
     (a, b) => a.queuePosition - b.queuePosition
   );
@@ -148,6 +154,7 @@ function getServicesTypes() {
 }
 
 export {
+  getAllData,
   getAllQueuedSorted,
   getNextQueuePosition,
   getServicesTypes,
