@@ -1,9 +1,20 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 import * as formatter from '../helpers/formatNumber';
-import { removeQueuedById, advanceQueueById } from '../api/apiService';
 
-export default function CardClientQueued({ queued }) {
+export default function CardClientQueued({
+  queued,
+  onClickAdvance,
+  onClickRemove,
+}) {
+  const handleClickAdvance = (queued) => {
+    onClickAdvance(queued);
+  };
+
+  const handleClickRemove = (queued) => {
+    onClickRemove(queued);
+  };
+
   return (
     <div style={{ maxHeight: '650px', overflow: 'auto' }}>
       <FlipMove
@@ -60,7 +71,7 @@ export default function CardClientQueued({ queued }) {
                   className="btn-floating btn-small orange lighten-2"
                   disabled={queued.queuePosition === 1}
                   onClick={() => {
-                    advanceQueueById(queued);
+                    handleClickAdvance(queued);
                   }}
                 >
                   <i className="material-icons">call_split</i>
@@ -68,7 +79,7 @@ export default function CardClientQueued({ queued }) {
                 <button
                   className="btn-floating btn-small red lighten-2"
                   onClick={() => {
-                    removeQueuedById(queued);
+                    handleClickRemove(queued);
                   }}
                 >
                   <i className="material-icons">delete</i>

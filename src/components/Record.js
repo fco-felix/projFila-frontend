@@ -28,7 +28,6 @@ export default function Record() {
         <a
           className={`btn-floating btn waves-effect waves-light blue`}
           onClick={handleOpen}
-          disabled={true}
         >
           <i className="material-icons">assessment</i>
         </a>

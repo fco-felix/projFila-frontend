@@ -14,6 +14,7 @@ export default function ServiceScreen() {
   const [attendanceQueue, setAttendanceQueue] = useState([]);
   const [nextQueuePosition, setNextQueuePosition] = useState(0);
   const [isCallClientDisabled, setIsCallClientDisabled] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -34,7 +35,7 @@ export default function ServiceScreen() {
         );
       }
       setAttendanceQueue(getAttendanceQueue);
-    }, 1000);
+    }, 500);
     return () => {
       clearInterval(interval);
     };
@@ -58,14 +59,22 @@ export default function ServiceScreen() {
     setFilter(value);
   };
 
-  const handleCallClient = () => {
-    api.advanceQueue({ attendant });
+  const handleCallClient = async () => {
+    await api.advanceQueue({ attendant });
   };
 
   const handleSave = () => {};
 
   const handleAttendant = (value) => {
     setAttendant(value);
+  };
+
+  const handleAdvanceQueue = async (queued) => {
+    await api.advanceQueueById(queued);
+  };
+
+  const handleRemoveQueue = async (queued) => {
+    await api.removeQueuedById(queued);
   };
 
   return (
@@ -80,6 +89,9 @@ export default function ServiceScreen() {
             filter={filter}
             onFilter={handleFilter}
             onSave={handleSave}
+            isUpdating={isUpdating}
+            onAdvance={handleAdvanceQueue}
+            onRemove={handleRemoveQueue}
           />
           <Attendance
             isCallClientDisabled={isCallClientDisabled}

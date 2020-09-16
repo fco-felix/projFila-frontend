@@ -8,6 +8,9 @@ export default function Queue({
   nextQueuePosition,
   onFilter,
   onSave,
+  isUpdating,
+  onAdvance,
+  onRemove,
 }) {
   const [isClientFormOpen, setIsClientFormOpen] = useState(false);
   const [button, setButtonState] = useState({
@@ -50,6 +53,14 @@ export default function Queue({
     setButtonState(buttonOpen);
     setIsClientFormOpen(false);
     onSave();
+  };
+
+  const handleAdvance = (queued) => {
+    onAdvance(queued);
+  };
+
+  const handleRemove = (queued) => {
+    onRemove(queued);
   };
 
   return (
@@ -99,7 +110,18 @@ export default function Queue({
       {filteredQueue.length === 0 && (
         <h6 style={{ fontWeight: 'bold' }}>Não existem clientes na fila.</h6>
       )}
-      {filteredQueue.length > 0 && <CardClientQueued queued={filteredQueue} />}
+      {filteredQueue.length > 0 && (
+        <CardClientQueued
+          queued={filteredQueue}
+          onClickAdvance={handleAdvance}
+          onClickRemove={handleRemove}
+        />
+      )}
+      {isUpdating && (
+        <div>
+          <i className="material-icons right">update</i>
+        </div>
+      )}
     </div>
   );
 }
