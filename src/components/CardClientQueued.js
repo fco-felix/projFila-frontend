@@ -69,7 +69,7 @@ export default function CardClientQueued({
               <div>
                 <button
                   className="btn-floating btn-small orange lighten-2"
-                  disabled={queued.queuePosition === 1}
+                  disabled={true} //queued.queuePosition === 1
                   onClick={() => {
                     handleClickAdvance(queued);
                   }}

@@ -35,18 +35,18 @@ export default function ServiceScreen() {
         );
       }
       setAttendanceQueue(getAttendanceQueue);
-    }, 500);
+      setIsCallClientDisabled(
+        inQueue === undefined || inQueue.length <= 0 || attendant === undefined
+      );
+    }, 3000);
     return () => {
       clearInterval(interval);
     };
   }, [allQueued, nextQueuePosition, attendant]);
 
   useEffect(() => {
-    setIsCallClientDisabled(
-      inQueue === undefined || inQueue.length <= 0 || attendant === undefined
-    );
     setFilteredQueue(inQueue);
-  }, [inQueue, attendant]);
+  }, [inQueue]);
 
   useEffect(() => {
     const filteredQueue = inQueue.filter((queued) =>
@@ -70,6 +70,7 @@ export default function ServiceScreen() {
   };
 
   const handleAdvanceQueue = async (queued) => {
+    
     await api.advanceQueueById(queued);
   };
 
