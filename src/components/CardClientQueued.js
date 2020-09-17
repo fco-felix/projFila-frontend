@@ -1,6 +1,7 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
 import * as formatter from '../helpers/formatNumber';
+import { advanceQueueById } from '../api/apiService';
 
 export default function CardClientQueued({
   queued,
@@ -69,9 +70,9 @@ export default function CardClientQueued({
               <div>
                 <button
                   className="btn-floating btn-small orange lighten-2"
-                  disabled={true} //queued.queuePosition === 1
+                  disabled={queued.queuePosition === 1} //true
                   onClick={() => {
-                    handleClickAdvance(queued);
+                    advanceQueueById(queued);
                   }}
                 >
                   <i className="material-icons">call_split</i>
