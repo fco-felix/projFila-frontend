@@ -35,7 +35,7 @@ export default function ServiceScreen() {
         );
       }
       setAttendanceQueue(getAttendanceQueue);
-    }, 500);
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
@@ -79,28 +79,25 @@ export default function ServiceScreen() {
 
   return (
     <div className="row center">
-      {inQueue.length <= 0 && <Spinner />}
-      {inQueue.length > 0 && (
-        <div>
-          <Record isVisible={true} />
-          <Queue
-            filteredQueue={filteredQueue}
-            nextQueuePosition={nextQueuePosition}
-            filter={filter}
-            onFilter={handleFilter}
-            onSave={handleSave}
-            isUpdating={isUpdating}
-            onAdvance={handleAdvanceQueue}
-            onRemove={handleRemoveQueue}
-          />
-          <Attendance
-            isCallClientDisabled={isCallClientDisabled}
-            attendanceQueue={attendanceQueue}
-            onCallClient={handleCallClient}
-            onAttendant={handleAttendant}
-          />
-        </div>
-      )}
+      <div>
+        <Record isVisible={true} />
+        <Queue
+          filteredQueue={filteredQueue}
+          nextQueuePosition={nextQueuePosition}
+          filter={filter}
+          onFilter={handleFilter}
+          onSave={handleSave}
+          isUpdating={isUpdating}
+          onAdvance={handleAdvanceQueue}
+          onRemove={handleRemoveQueue}
+        />
+        <Attendance
+          isCallClientDisabled={isCallClientDisabled}
+          attendanceQueue={attendanceQueue}
+          onCallClient={handleCallClient}
+          onAttendant={handleAttendant}
+        />
+      </div>
     </div>
   );
 }

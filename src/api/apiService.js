@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URl = 'https://projfila-backend.herokuapp.com/queue';
+const API_URl = 'https://projfila-backend.herokuapp.com/queue/';
 
 const SERVICES_TYPE = [
   {
