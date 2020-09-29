@@ -5,7 +5,7 @@ import Record from './components/Record';
 export default function App() {
   return (
     <>
-      {true && (
+      {false && (
         <div>
           <h3>
             Mudei o acesso à fila (de novo rs). Entre em{' '}
@@ -13,7 +13,7 @@ export default function App() {
           </h3>
         </div>
       )}
-      {false && (
+      {true && (
         <div>
           <Record />
           <ServiceScreen />
