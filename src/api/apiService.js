@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URl = 'https://projfila-backend.herokuapp.com/queue/';
+const API_URl = 'https://projfila-backend.herokuapp.com/queue';
 
 const SERVICES_TYPE = [
   {
@@ -82,7 +82,7 @@ async function getAllData() {
 }
 
 async function getAllQueuedSorted() {
-  const res = await axios.get(`${API_URl}/last5days`);
+  const res = await axios.get(`${API_URl}`);
   const queue = res.data.queue.sort(
     (a, b) => a.queuePosition - b.queuePosition
   );

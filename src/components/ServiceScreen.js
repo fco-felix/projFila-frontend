@@ -26,6 +26,7 @@ export default function ServiceScreen() {
         (queued) => queued.status === 'Em fila'
       );
       setInQueue(getInQueue);
+      console.log(allQueued);
       var getAttendanceQueue = allQueued.filter(
         (queued) => queued.status === 'Em atendimento'
       );
